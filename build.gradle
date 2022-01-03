@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'org.adidas.frontend'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "junit:junit:${property('junit.version')}"
+    testImplementation "io.cucumber:cucumber-junit:${property('cucumber.version')}"
+    testImplementation "io.rest-assured:rest-assured:${property('restAssured.version')}"
+    implementation "org.json:json:${property('json.version')}"
+    implementation "io.cucumber:cucumber-java:${property('cucumber.version')}"
+    implementation "net.serenity-bdd:serenity-core:${property('serenity.version')}"
+    testImplementation "net.serenity-bdd:serenity-junit:${property('serenity.version')}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${property('serenity.version')}"
+}
+
+test {
+
+}
