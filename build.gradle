@@ -10,12 +10,16 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'io.cucumber:cucumber-junit:7.0.0'
-    testImplementation 'io.rest-assured:rest-assured:4.4.0'
-    implementation 'org.json:json:20210307'
-    implementation 'io.cucumber:cucumber-java:7.0.0'
-    implementation 'net.serenity-bdd:serenity-core:3.1.15'
-    testImplementation 'net.serenity-bdd:serenity-junit:3.1.15'
-    testImplementation 'net.serenity-bdd:serenity-cucumber:3.1.15'
+    testImplementation "junit:junit:${property('junit.version')}"
+    testImplementation "io.cucumber:cucumber-junit:${property('cucumber.version')}"
+    testImplementation "io.rest-assured:rest-assured:${property('restAssured.version')}"
+    implementation "org.json:json:${property('json.version')}"
+    implementation "io.cucumber:cucumber-java:${property('cucumber.version')}"
+    implementation "net.serenity-bdd:serenity-core:${property('serenity.version')}"
+    testImplementation "net.serenity-bdd:serenity-junit:${property('serenity.version')}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${property('serenity.version')}"
+}
+
+test {
+
 }
