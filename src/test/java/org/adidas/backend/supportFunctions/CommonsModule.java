@@ -1,7 +1,6 @@
 package org.adidas.backend.supportFunctions;
 
 import net.serenitybdd.core.Serenity;
-import net.serenitybdd.core.*;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -18,10 +17,6 @@ public class CommonsModule {
             Assert.fail("File: " + filePath + " was not found.");
             return null;
         }
-    }
-
-    public static JSONObject getJSONfromString(String json) {
-        return new JSONObject(json);
     }
 
     public static <T> T getSessionVariable(String key) {

@@ -10,7 +10,7 @@ import org.junit.Assert;
 public class PetSteps {
     PetModule petModule = new PetModule();
 
-    @Given("^the user asks for (available) pets$")
+    @Given("^the user asks for (available|pending|sold) pets$")
     public void getPetsByStatus(String status) {
         petModule.getPetsByStatus(status);
     }

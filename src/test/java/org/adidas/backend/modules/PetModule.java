@@ -1,5 +1,6 @@
 package org.adidas.backend.modules;
 
+import org.adidas.backend.config.Configuration;
 import org.adidas.backend.supportFunctions.CommonsModule;
 import org.adidas.backend.supportFunctions.RequestModule;
 import org.json.JSONArray;
@@ -8,40 +9,44 @@ import org.json.JSONObject;
 import java.util.Date;
 
 public class PetModule {
+    private static final String apiBaseUrl = Configuration.API_BASE_URL;
+    private static final String endpointPet = Configuration.ENDPOINT_PET;
+    private static final String endpointPetFindByStatus = Configuration.ENDPOINT_PET_FIND_BY_STATUS;
+    private static final String petFilePath = Configuration.PET_FILE_PATH;
     RequestModule requestModule = new RequestModule();
 
     public void getPetsByStatus(String status) {
         requestModule.addParam("status", status);
         requestModule.addHeader("accept", "application/json");
-        requestModule.executeRequest("get", "https://petstore.swagger.io/v2/" + "pet/findByStatus");
+        requestModule.executeRequest("get", apiBaseUrl + endpointPetFindByStatus);
     }
 
     public void createPet() {
-        JSONObject petBody = CommonsModule.getJSONfromFile("src/test/resources/requests/bodies/pet.json");
+        JSONObject petBody = CommonsModule.getJSONfromFile(petFilePath);
         long id = new Date().getTime();
         CommonsModule.setSessionVariable("id", id);
         if (petBody != null) {
             petBody.put("id", id);
             requestModule.addHeader("accept", "application/json");
             requestModule.addHeader("Content-Type", "application/json");
-            requestModule.executeRequest("post", "https://petstore.swagger.io/v2/" + "pet/", petBody.toString());
+            requestModule.executeRequest("post", apiBaseUrl + endpointPet, petBody.toString());
         }
     }
 
     public void changePetStatus(long id, String status) {
-        JSONObject petBody = CommonsModule.getJSONfromFile("src/test/resources/requests/bodies/pet.json");
+        JSONObject petBody = CommonsModule.getJSONfromFile(petFilePath);
         if (petBody != null) {
             petBody.put("id", id);
             petBody.put("status", status);
             requestModule.addHeader("accept", "application/json");
             requestModule.addHeader("Content-Type", "application/json");
-            requestModule.executeRequest("put", "https://petstore.swagger.io/v2/" + "pet/", petBody.toString());
+            requestModule.executeRequest("put", apiBaseUrl + endpointPet, petBody.toString());
         }
     }
 
     public void deletePet(long id) {
         requestModule.addHeader("accept", "application/json");
-        requestModule.executeRequest("delete", "https://petstore.swagger.io/v2/" + "pet/" + id);
+        requestModule.executeRequest("delete", apiBaseUrl + endpointPet + id);
     }
 
     public boolean verifyPetIsCreated(long id) {
