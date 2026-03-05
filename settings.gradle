@@ -1,2 +1,8 @@
+pluginManagement {
+    plugins {
+        id("net.serenity-bdd.serenity-gradle-plugin") version providers.gradleProperty("serenity.version").get()
+    }
+}
+
 rootProject.name = 'adidas-backend-challenge'
 
